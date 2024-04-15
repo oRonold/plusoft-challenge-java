@@ -14,6 +14,8 @@
 - Abrir aplicação de testes de API(Insomnia, Postman) disponível em seu computador.
 - Colocar a URL: "http://localhost:8080/" após o barra colocar o endpoint escolhido para teste de acordo com a documentação.
 
+AVISO: Imagens dos diagramas e a exportação dos endpoints do Insomnia estão na pasta "doc".
+
 ## Diagramas :page_facing_up:
 Diagrama de Entidade-Relacionamento
 ![DER_sprint1](https://github.com/oRonold/sprint1-java/assets/109552047/52a00321-a9aa-4bc8-9dd3-297947d2e3b5)
