@@ -2,7 +2,7 @@
 
 ## Integrantes e suas respectivas matérias
 <p>Ronald de Oliveira Farias - RM 552364 - Java Advanced, Mastering Relational and Non-Relational Database.</p>
-<p>Gustavo Carvalho Noia - RM 552410 - Advanced Business Development With .NET, Compliance & Quality Assurance.</p>
+<p>Gustavo Carvalho Noia - RM 552466 - Advanced Business Development With .NET, Compliance & Quality Assurance.</p>
 <p>Vitor Teixeira - RM 552228 - Disruptive Architectures: IOT, IOB & Generative AI, Devops Tools e Cloud Computing.</p>
 <p>Lucas Serbato - RM 551821 - Mobile App Development.</p>
 
