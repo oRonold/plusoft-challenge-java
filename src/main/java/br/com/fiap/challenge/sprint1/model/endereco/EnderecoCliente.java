@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "INOV_TB_ENDERECO_CLIENTE")
+@SequenceGenerator(name = "inov_endereco_cliente_seq", sequenceName = "inov_tb_endereco_cliente_seq", allocationSize = 1)
 public class EnderecoCliente {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_endereco_cliente_seq")
     @Column(name = "cd_endereco")
     private Long codigo;
     @Column(name = "nr_logradouro", precision = 7, nullable = false)
@@ -28,7 +29,7 @@ public class EnderecoCliente {
     @JoinColumn(name = "cd_cliente")
     private Cliente cliente;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cd_logradouro")
     private Logradouro logradouro;
 

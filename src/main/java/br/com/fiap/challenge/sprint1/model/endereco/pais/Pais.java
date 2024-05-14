@@ -14,10 +14,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "INOV_TB_PAIS")
+@SequenceGenerator(name = "inov_pais_seq", sequenceName = "inov_tb_pais_seq", allocationSize = 1)
 public class Pais {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_pais_seq")
     @Column(name = "cd_pais")
     private Long codigo;
     @Column(name = "nm_pais", length = 50, nullable = false)

@@ -18,11 +18,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "INOV_TB_PESQUISA")
-@JsonIgnoreProperties(value = {"tipoServico"})
+@SequenceGenerator(name = "inov_pesquisa_seq", sequenceName = "inov_tb_pesquisa_seq", allocationSize = 1)
 public class Pesquisa {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_pesquisa_seq")
     @Column(name = "cd_codigo")
     private Long codigo;
     @Column(name = "ds_pesquisa", length = 100, nullable = false)
@@ -30,16 +30,17 @@ public class Pesquisa {
     @Column(name = "dt_pesquisa", length = 100, nullable = false)
     private LocalDate dataPesquisa;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "INOV_TB_PESQUISA_FIG_PUBLICA", joinColumns = @JoinColumn(name = "cd_pesquisa", nullable = false),
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "INOV_TB_PESQUISA_FIG_PUBLICA",
+            joinColumns = @JoinColumn(name = "cd_pesquisa", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "cd_fig_publica", nullable = false))
     private List<FiguraPublica> figuraPublica;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "cd_tipo_servico")
     private TipoServico tipoServico;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "cd_usuario")
     private Usuario usuario;
 

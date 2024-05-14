@@ -1,8 +1,10 @@
 package br.com.fiap.challenge.sprint1.model.figuraPublica;
 
+import br.com.fiap.challenge.sprint1.model.categoria.Categoria;
 import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.AtualizarFiguraDTO;
 import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.CriarFiguraDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
+import br.com.fiap.challenge.sprint1.model.score.Score;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +16,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "INOV_TB_FIG_PUBLICA")
+@SequenceGenerator(name = "inov_fig_publica_seq", sequenceName = "inov_tb_fig_publica_seq", allocationSize = 1)
 public class FiguraPublica {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_fig_publica_seq")
     @Column(name = "cd_fig_publica")
     private Long codigo;
     @Column(name = "nm_fig_publica", length = 100, nullable = false)
@@ -29,6 +32,13 @@ public class FiguraPublica {
 
     @ManyToMany(mappedBy = "figuraPublica", cascade = CascadeType.ALL)
     private List<Pesquisa> pesquisa;
+
+    @OneToOne(mappedBy = "figuraPublica")
+    private Score score;
+
+    @ManyToOne
+    @JoinColumn(name = "cd_categoria")
+    private Categoria categoria;
 
     public FiguraPublica(CriarFiguraDTO dto){
         this.nome = dto.nome();

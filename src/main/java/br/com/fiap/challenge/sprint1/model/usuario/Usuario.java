@@ -1,20 +1,24 @@
 package br.com.fiap.challenge.sprint1.model.usuario;
 
+import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.AtualizarUsuarioDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.CriarUsuarioDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 
 @Entity
 @Table(name = "INOV_TB_USUARIO")
+@SequenceGenerator(name = "inov_usuario_seq", sequenceName = "inov_tb_usuario_seq", allocationSize = 1)
 public class Usuario {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_usuario_seq")
     private Long codigo;
     @Column(name = "nm_usuario", length = 100, nullable = false)
     private String nome;
@@ -22,6 +26,9 @@ public class Usuario {
     private String email;
     @Column(name = "ds_senha", length = 100, nullable = false)
     private String senha;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Pesquisa> pesquisas;
 
     public Usuario(CriarUsuarioDTO dto){
         this.nome = dto.nome();

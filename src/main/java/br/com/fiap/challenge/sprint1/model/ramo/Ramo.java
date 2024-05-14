@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "INOV_TB_RAMO")
+@SequenceGenerator(name = "inov_ramo_seq", sequenceName = "inov_tb_ramo_seq", allocationSize = 1)
 public class Ramo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_ramo_seq")
     private Long codigo;
     @Column(name = "nm_ramo", length = 100, nullable = false)
     private String nome;

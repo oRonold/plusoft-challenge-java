@@ -15,10 +15,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "INOV_TB_LOGRADOURO")
+@SequenceGenerator(name = "inov_logradouro_seq", sequenceName = "inov_tb_logradourou_seq", allocationSize = 1)
 public class Logradouro {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_logradouro_seq")
     @Column(name = "cd_logradouro")
     private Long codigo;
     @Column(name = "nm_logradouro", length = 100, nullable = false)
@@ -26,7 +27,7 @@ public class Logradouro {
     @Column(name = "nr_cep", length = 8, nullable = false)
     private String cep;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cd_bairro")
     private Bairro bairro;
 

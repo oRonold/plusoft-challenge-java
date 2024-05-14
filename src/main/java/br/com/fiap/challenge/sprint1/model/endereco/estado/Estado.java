@@ -15,16 +15,17 @@ import java.util.List;
 
 @Entity
 @Table(name = "INOV_TB_ESTADO")
+@SequenceGenerator(name = "inov_estado_seq", sequenceName = "inov_tb_estado_seq", allocationSize = 1)
 public class Estado {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_estado_seq")
     @Column(name = "cd_estado")
     private Long codigo;
     @Column(name = "nm_estado", length = 50, nullable = false)
     private String nome;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cd_pais")
     private Pais pais;
 

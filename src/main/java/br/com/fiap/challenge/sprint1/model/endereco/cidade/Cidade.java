@@ -15,10 +15,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "INOV_TB_CIDADE")
+@SequenceGenerator(name = "inov_cidade_seq", sequenceName = "inov_tb_cidade_seq", allocationSize = 1)
 public class Cidade {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_cidade_seq")
     @Column(name = "cd_cidade")
     private Long codigo;
     @Column(name = "nm_cidade", length = 100, nullable = false)
@@ -26,7 +27,7 @@ public class Cidade {
     @Column(name = "nr_ddd", length = 5, nullable = false)
     private String ddd;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cd_estado")
     private Estado estado;
 

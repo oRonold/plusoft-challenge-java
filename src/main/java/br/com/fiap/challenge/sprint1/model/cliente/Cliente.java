@@ -8,19 +8,22 @@ import br.com.fiap.challenge.sprint1.model.ramo.Ramo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor
 
 @Entity
 @Table(name = "INOV_TB_CLIENTE")
+@SequenceGenerator(name = "inov_cliente_seq", sequenceName = "inov_tb_cliente_seq", allocationSize = 1)
 public class Cliente {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_cliente_seq")
     private Long codigo;
     @Column(name = "nm_cliente", length = 100, nullable = false)
     private String nome;
@@ -31,11 +34,11 @@ public class Cliente {
     @Column(name = "nr_telefone", length = 9, nullable = false)
     private String telefone;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cd_usuario")
     private Usuario usuario;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "cd_ramo")
     private Ramo ramo;
 
