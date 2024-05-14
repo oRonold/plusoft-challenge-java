@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.fiap.challenge</groupId>
-	<artifactId>sprint1</artifactId>
+	<artifactId>plusoft-challenge</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sprint1</name>
 	<description>Demo project for Spring Boot</description>
