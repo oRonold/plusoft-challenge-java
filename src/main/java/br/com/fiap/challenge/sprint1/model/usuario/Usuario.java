@@ -1,15 +1,19 @@
 package br.com.fiap.challenge.sprint1.model.usuario;
 
+import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.AtualizarUsuarioDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.CriarUsuarioDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor
 
 @Entity
@@ -27,10 +31,13 @@ public class Usuario {
     @Column(name = "ds_senha", length = 100, nullable = false)
     private String senha;
 
+    @OneToOne(mappedBy = "usuario")
+    private Cliente cliente;
+
     @OneToMany(mappedBy = "usuario")
     private List<Pesquisa> pesquisas;
 
-    public Usuario(CriarUsuarioDTO dto){
+    public Usuario(CadastrarClienteDTO dto){
         this.nome = dto.nome();
         this.email = dto.email();
         this.senha = dto.senha();

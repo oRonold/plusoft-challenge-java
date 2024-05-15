@@ -1,5 +1,6 @@
 package br.com.fiap.challenge.sprint1.model.cliente.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -19,6 +20,11 @@ public record CadastrarClienteDTO(
         @NotEmpty
         @Length(max = 15)
         String telefone,
+        @NotEmpty
+        @Email
+        String email,
+        @NotEmpty
+        String senha,
         @NotEmpty
         String nomeRamo,
         @NotEmpty

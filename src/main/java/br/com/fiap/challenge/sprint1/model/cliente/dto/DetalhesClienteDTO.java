@@ -8,6 +8,7 @@ import br.com.fiap.challenge.sprint1.model.endereco.estado.dto.DetalhesEstadoDTO
 import br.com.fiap.challenge.sprint1.model.endereco.logradouro.dto.DetalhesLogradouroDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.pais.dto.DetalhesPaisDTO;
 import br.com.fiap.challenge.sprint1.model.ramo.dto.DetalhesRamoDTO;
+import br.com.fiap.challenge.sprint1.model.usuario.dto.DetalhesUsuarioDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
@@ -16,12 +17,14 @@ import java.util.List;
 
 public record DetalhesClienteDTO(Long codigo, String nome,
                                  @JsonFormat(pattern = "dd/MM/yyyy")
-                                 LocalDate dataNascimento, String cpf, String telefone, DetalhesRamoDTO ramo,
+                                 LocalDate dataNascimento, String cpf, String telefone, DetalhesRamoDTO ramo, DetalhesUsuarioDTO usuario,
                                  ArrayList<DetalhesEnderecoClienteDTO> enderecoCliente) {
 
     public DetalhesClienteDTO(Cliente cliente){
         this(cliente.getCodigo(), cliente.getNome(), cliente.getDataNascimento(), cliente.getCpf(), cliente.getTelefone(),
-                new DetalhesRamoDTO(cliente.getRamo()), new ArrayList<>(cliente.getEnderecoClientes().stream().map(endereco -> new DetalhesEnderecoClienteDTO(endereco.getCodigo(), endereco.getNumero(), endereco.getPontoReferencia(),
+                new DetalhesRamoDTO(cliente.getRamo()),
+                        new DetalhesUsuarioDTO(cliente.getUsuario()),
+                        new ArrayList<>(cliente.getEnderecoClientes().stream().map(endereco -> new DetalhesEnderecoClienteDTO(endereco.getCodigo(), endereco.getNumero(), endereco.getPontoReferencia(),
                         new DetalhesLogradouroDTO(endereco.getLogradouro()),
                         new DetalhesBairroDTO(endereco.getLogradouro().getBairro()),
                         new DetalhesCidadeDTO(endereco.getLogradouro().getBairro().getCidade()),

@@ -52,6 +52,8 @@ public class Cliente {
         this.cpf = dto.cpf();
         this.telefone = dto.telefone();
         enderecoClientes = new ArrayList<>();
+        usuario = new Usuario(dto);
+        usuario.setCliente(this);
     }
 
     public void atualizar(AtualizarClienteDTO dto){
