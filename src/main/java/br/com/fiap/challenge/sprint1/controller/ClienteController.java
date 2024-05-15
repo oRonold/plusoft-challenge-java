@@ -4,6 +4,7 @@ import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.AtualizarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.DetalhesClienteDTO;
+import br.com.fiap.challenge.sprint1.model.cliente.dto.ListagemClientesDTO;
 import br.com.fiap.challenge.sprint1.repository.ClienteRepository;
 import br.com.fiap.challenge.sprint1.service.ClienteService;
 import jakarta.validation.Valid;
@@ -25,39 +26,38 @@ public class ClienteController {
     @Autowired
     private ClienteService service;
 
-    @PostMapping("/cadastrar")
+    @PostMapping
     @Transactional
-    public ResponseEntity<DetalhesClienteDTO> criar(@RequestBody @Valid CadastrarClienteDTO dto, UriComponentsBuilder builder){
+    public ResponseEntity<DetalhesClienteDTO> cadastrar(@RequestBody @Valid CadastrarClienteDTO dto, UriComponentsBuilder builder){
         var cliente = service.cadastrarCliente(dto);
         var uri = builder.path("/{id}").buildAndExpand(cliente.getCodigo()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesClienteDTO(cliente));
     }
 
-    @GetMapping("/listar")
-    public ResponseEntity<Page<DetalhesClienteDTO>> listar(Pageable pageable){
-        var page = repository.findAll(pageable).map(DetalhesClienteDTO::new);
+    @GetMapping
+    public ResponseEntity<Page<ListagemClientesDTO>> listar(Pageable pageable){
+        var page = repository.findAll(pageable).map(ListagemClientesDTO::new);
         return ResponseEntity.ok(page);
     }
 
-    @PutMapping("/atualizar")
-    @Transactional
-    public ResponseEntity<DetalhesClienteDTO> atualizar(@RequestBody @Valid AtualizarClienteDTO dto){
-        var cliente = repository.getReferenceById(dto.codigo());
-        cliente.atualizar(dto);
-        return ResponseEntity.ok().body(new DetalhesClienteDTO(cliente));
-    }
-
-    @GetMapping("/listar/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<DetalhesClienteDTO> buscarPorId(@PathVariable Long id){
         var cliente = repository.getReferenceById(id);
         return ResponseEntity.ok().body(new DetalhesClienteDTO(cliente));
     }
 
-    @DeleteMapping("/excluir/{id}")
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DetalhesClienteDTO> atualizar(@RequestBody @Valid AtualizarClienteDTO dto, @PathVariable Long id){
+        var cliente = repository.getReferenceById(id);
+        cliente.atualizar(dto);
+        return ResponseEntity.ok().body(new DetalhesClienteDTO(cliente));
+    }
+
+    @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> excluir(@PathVariable Long id){
-        var cliente = repository.getReferenceById(id);
-        repository.deleteById(cliente.getCodigo());
+        repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

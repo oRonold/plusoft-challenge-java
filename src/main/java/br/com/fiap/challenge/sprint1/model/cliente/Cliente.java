@@ -63,6 +63,15 @@ public class Cliente {
         if(dto.telefone() != null){
             this.telefone = dto.telefone();
         }
+        if(dto.senha() != null){
+            this.usuario.setSenha(dto.senha());
+        }
+        if(dto.nomeRamo() != null){
+            this.ramo.setNome(dto.nomeRamo());
+        }
+        if(dto.descRamo() != null){
+            this.ramo.setDescricao(dto.descRamo());
+        }
     }
 
 }
