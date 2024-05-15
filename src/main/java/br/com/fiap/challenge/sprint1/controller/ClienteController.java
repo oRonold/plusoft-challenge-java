@@ -2,13 +2,10 @@ package br.com.fiap.challenge.sprint1.controller;
 
 import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.AtualizarClienteDTO;
-import br.com.fiap.challenge.sprint1.model.cliente.dto.CriarClienteDTO;
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.DetalhesClienteDTO;
-import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AtualizarPesquisaDTO;
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.DetalhesPesquisaDTO;
 import br.com.fiap.challenge.sprint1.repository.ClienteRepository;
+import br.com.fiap.challenge.sprint1.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,11 +22,13 @@ public class ClienteController {
     @Autowired
     private ClienteRepository repository;
 
+    @Autowired
+    private ClienteService service;
+
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<DetalhesClienteDTO> criar(@RequestBody @Valid CriarClienteDTO dto, UriComponentsBuilder builder){
-        var cliente = new Cliente(dto);
-        repository.save(cliente);
+    public ResponseEntity<DetalhesClienteDTO> criar(@RequestBody @Valid CadastrarClienteDTO dto, UriComponentsBuilder builder){
+        var cliente = service.cadastrarCliente(dto);
         var uri = builder.path("/{id}").buildAndExpand(cliente.getCodigo()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesClienteDTO(cliente));
     }

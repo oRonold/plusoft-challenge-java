@@ -1,6 +1,7 @@
 package br.com.fiap.challenge.sprint1.controller;
 
 import br.com.fiap.challenge.sprint1.model.cliente.dto.AtualizarClienteDTO;
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.DetalhesClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.EnderecoCliente;
 import br.com.fiap.challenge.sprint1.model.endereco.dto.AtualizarEnderecoClienteDTO;
@@ -25,7 +26,7 @@ public class EnderecoClienteController {
 
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<DetalhesEnderecoClienteDTO> criar(@RequestBody @Valid CriarEnderecoClienteDTO dto, UriComponentsBuilder builder){
+    public ResponseEntity<DetalhesEnderecoClienteDTO> criar(@RequestBody @Valid CadastrarClienteDTO dto, UriComponentsBuilder builder){
         var endereco = new EnderecoCliente(dto);
         repository.save(endereco);
         var uri = builder.path("/{id}").buildAndExpand(endereco.getCodigo()).toUri();

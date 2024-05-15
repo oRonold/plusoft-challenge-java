@@ -1,5 +1,6 @@
 package br.com.fiap.challenge.sprint1.controller;
 
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
 import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AtualizarPesquisaDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
@@ -27,7 +28,7 @@ public class RamoController {
 
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<DetalhesRamoDTO> criar(@RequestBody @Valid CriarRamoDTO dto, UriComponentsBuilder builder){
+    public ResponseEntity<DetalhesRamoDTO> criar(@RequestBody @Valid CadastrarClienteDTO dto, UriComponentsBuilder builder){
         var ramo = new Ramo(dto);
         repository.save(ramo);
         var uri = builder.path("/{id}").buildAndExpand(ramo.getCodigo()).toUri();

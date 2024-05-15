@@ -16,7 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "INOV_TB_FIG_PUBLICA")
-@SequenceGenerator(name = "inov_fig_publica_seq", sequenceName = "inov_tb_fig_publica_seq", allocationSize = 1)
+@SequenceGenerator(name = "inov_fig_publica_seq", sequenceName = "inov_tb_fig_publica_seq", allocationSize = 1, initialValue = 1)
 public class FiguraPublica {
 
     @Id

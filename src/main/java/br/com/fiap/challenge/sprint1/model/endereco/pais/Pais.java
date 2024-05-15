@@ -1,12 +1,13 @@
 package br.com.fiap.challenge.sprint1.model.endereco.pais;
 
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.estado.Estado;
 import br.com.fiap.challenge.sprint1.model.endereco.pais.dto.AtualizarPaisDTO;
-import br.com.fiap.challenge.sprint1.model.endereco.pais.dto.CriarPaisDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "INOV_TB_PAIS")
-@SequenceGenerator(name = "inov_pais_seq", sequenceName = "inov_tb_pais_seq", allocationSize = 1)
+@SequenceGenerator(name = "inov_pais_seq", sequenceName = "inov_tb_pais_seq", allocationSize = 1, initialValue = 1)
 public class Pais {
 
     @Id
@@ -29,9 +30,10 @@ public class Pais {
     @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL)
     private List<Estado> estados;
 
-    public Pais(CriarPaisDTO dto){
-        this.nome = dto.nome();
-        this.numeroCodigo = dto.numeroCodPais();
+    public Pais(CadastrarClienteDTO dto){
+        this.nome = dto.nomePais();
+        this.numeroCodigo = dto.codPais();
+        estados = new ArrayList<>();
     }
 
     public void atualizar(AtualizarPaisDTO dto){

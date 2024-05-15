@@ -1,21 +1,24 @@
 package br.com.fiap.challenge.sprint1.model.endereco.cidade;
 
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.bairro.Bairro;
 import br.com.fiap.challenge.sprint1.model.endereco.cidade.dto.AtualizarCidadeDTO;
-import br.com.fiap.challenge.sprint1.model.endereco.cidade.dto.CriarCidadeDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.estado.Estado;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor
 
 @Entity
 @Table(name = "INOV_TB_CIDADE")
-@SequenceGenerator(name = "inov_cidade_seq", sequenceName = "inov_tb_cidade_seq", allocationSize = 1)
+@SequenceGenerator(name = "inov_cidade_seq", sequenceName = "inov_tb_cidade_seq", allocationSize = 1, initialValue = 1)
 public class Cidade {
 
     @Id
@@ -31,12 +34,13 @@ public class Cidade {
     @JoinColumn(name = "cd_estado")
     private Estado estado;
 
-    @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cidade")
     private List<Bairro> bairros;
 
-    public Cidade(CriarCidadeDTO dto){
-        this.nome = dto.nome();
-        this.ddd = dto.ddd();
+    public Cidade(CadastrarClienteDTO dto){
+        this.nome = dto.nomeCidade();
+        this.ddd = dto.numeroDDD();
+        bairros = new ArrayList<>();
     }
 
     public void atualizar(AtualizarCidadeDTO dto){

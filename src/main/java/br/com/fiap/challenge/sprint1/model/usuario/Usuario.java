@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "INOV_TB_USUARIO")
-@SequenceGenerator(name = "inov_usuario_seq", sequenceName = "inov_tb_usuario_seq", allocationSize = 1)
+@SequenceGenerator(name = "inov_usuario_seq", sequenceName = "inov_tb_usuario_seq", allocationSize = 1, initialValue = 1)
 public class Usuario {
 
     @Id

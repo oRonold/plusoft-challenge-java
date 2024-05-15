@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "INOV_TB_SCORE")
-@SequenceGenerator(name = "inov_score_seq", sequenceName = "inov_tb_score_seq", allocationSize = 1)
+@SequenceGenerator(name = "inov_score_seq", sequenceName = "inov_tb_score_seq", allocationSize = 1, initialValue = 1)
 public class Score {
 
     @Id

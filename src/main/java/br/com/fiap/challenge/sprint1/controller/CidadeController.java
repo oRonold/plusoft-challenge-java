@@ -1,9 +1,6 @@
 package br.com.fiap.challenge.sprint1.controller;
 
-import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
-import br.com.fiap.challenge.sprint1.model.cliente.dto.AtualizarClienteDTO;
-import br.com.fiap.challenge.sprint1.model.cliente.dto.CriarClienteDTO;
-import br.com.fiap.challenge.sprint1.model.cliente.dto.DetalhesClienteDTO;
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.cidade.Cidade;
 import br.com.fiap.challenge.sprint1.model.endereco.cidade.dto.AtualizarCidadeDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.cidade.dto.CriarCidadeDTO;
@@ -27,7 +24,7 @@ public class CidadeController {
 
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<DetalhesCidadeDTO> criar(@RequestBody @Valid CriarCidadeDTO dto, UriComponentsBuilder builder){
+    public ResponseEntity<DetalhesCidadeDTO> criar(@RequestBody @Valid CadastrarClienteDTO dto, UriComponentsBuilder builder){
         var cidade = new Cidade(dto);
         repository.save(cidade);
         var uri = builder.path("/{id}").buildAndExpand(cidade.getCodigo()).toUri();

@@ -1,5 +1,6 @@
 package br.com.fiap.challenge.sprint1.controller;
 
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.logradouro.Logradouro;
 import br.com.fiap.challenge.sprint1.model.endereco.logradouro.dto.AtualizarLogradouroDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.logradouro.dto.CriarLogradouroDTO;
@@ -27,7 +28,7 @@ public class LogradouroController {
 
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<DetalhesLogradouroDTO> cadastrar(@RequestBody @Valid CriarLogradouroDTO dto, UriComponentsBuilder builder){
+    public ResponseEntity<DetalhesLogradouroDTO> cadastrar(@RequestBody @Valid CadastrarClienteDTO dto, UriComponentsBuilder builder){
         var logradouro = new Logradouro(dto);
         repository.save(logradouro);
         var uri = builder.path("/{id}").buildAndExpand(logradouro.getCodigo()).toUri();

@@ -1,19 +1,22 @@
 package br.com.fiap.challenge.sprint1.model.endereco;
 
 import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.dto.AtualizarEnderecoClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.dto.CriarEnderecoClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.logradouro.Logradouro;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 
 @Entity
 @Table(name = "INOV_TB_ENDERECO_CLIENTE")
-@SequenceGenerator(name = "inov_endereco_cliente_seq", sequenceName = "inov_tb_endereco_cliente_seq", allocationSize = 1)
+@SequenceGenerator(name = "inov_endereco_cliente_seq", sequenceName = "inov_tb_endereco_cliente_seq", allocationSize = 1, initialValue = 1)
 public class EnderecoCliente {
 
     @Id
@@ -21,7 +24,7 @@ public class EnderecoCliente {
     @Column(name = "cd_endereco")
     private Long codigo;
     @Column(name = "nr_logradouro", precision = 7, nullable = false)
-    private Long numero;
+    private String numero;
     @Column(name = "ds_ponto_referencia", length = 50)
     private String pontoReferencia;
 
@@ -33,18 +36,19 @@ public class EnderecoCliente {
     @JoinColumn(name = "cd_logradouro")
     private Logradouro logradouro;
 
-    public EnderecoCliente(CriarEnderecoClienteDTO dto){
-        this.numero = dto.numero();
+    public EnderecoCliente(CadastrarClienteDTO dto){
+        this.numero = dto.numeroLogradouro();
         this.pontoReferencia = dto.pontoReferencia();
     }
 
-    public void atualizar(AtualizarEnderecoClienteDTO dto){
-        if(dto.numero() != null){
+    public void atualizar(AtualizarEnderecoClienteDTO dto) {
+        if (dto.numero() != null) {
             this.numero = dto.numero();
         }
-        if(dto.pontoReferencia() != null){
+        if (dto.pontoReferencia() != null) {
             this.pontoReferencia = dto.pontoReferencia();
         }
+
     }
 
 }
