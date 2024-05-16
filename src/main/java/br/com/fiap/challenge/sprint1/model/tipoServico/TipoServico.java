@@ -2,9 +2,6 @@ package br.com.fiap.challenge.sprint1.model.tipoServico;
 
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
 import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
-import br.com.fiap.challenge.sprint1.model.tipoServico.dto.AtualizarServicoDTO;
-import br.com.fiap.challenge.sprint1.model.tipoServico.dto.CadastrarServicoDTO;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,12 +32,6 @@ public class TipoServico {
     public TipoServico(CriarPesquisaDTO dto){
         this.descricao = dto.tipoServico();
         pesquisas = new ArrayList<>();
-    }
-
-    public void atualizar(AtualizarServicoDTO dto){
-        if(dto.descricao() != null){
-            this.descricao = dto.descricao();
-        }
     }
 
 }

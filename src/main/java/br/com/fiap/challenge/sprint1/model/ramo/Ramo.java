@@ -2,8 +2,6 @@ package br.com.fiap.challenge.sprint1.model.ramo;
 
 import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
-import br.com.fiap.challenge.sprint1.model.ramo.dto.AtualizarRamoDTO;
-import br.com.fiap.challenge.sprint1.model.ramo.dto.CriarRamoDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,15 +34,6 @@ public class Ramo {
         this.nome = dto.nomeRamo();
         this.descricao = dto.descRamo();
         cliente = new ArrayList<>();
-    }
-
-    public void atualizar(AtualizarRamoDTO dto){
-        if(dto.nome() != null){
-            this.nome = dto.nome();
-        }
-        if(dto.descricao() != null){
-            this.descricao = dto.descricao();
-        }
     }
 
 }

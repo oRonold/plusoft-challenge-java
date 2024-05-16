@@ -9,14 +9,9 @@ import br.com.fiap.challenge.sprint1.model.endereco.estado.Estado;
 import br.com.fiap.challenge.sprint1.model.endereco.logradouro.Logradouro;
 import br.com.fiap.challenge.sprint1.model.endereco.pais.Pais;
 import br.com.fiap.challenge.sprint1.model.ramo.Ramo;
-import br.com.fiap.challenge.sprint1.model.usuario.Usuario;
 import br.com.fiap.challenge.sprint1.repository.ClienteRepository;
-import br.com.fiap.challenge.sprint1.repository.RamoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ClienteService {

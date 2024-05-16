@@ -1,8 +1,6 @@
 package br.com.fiap.challenge.sprint1.model.figuraPublica;
 
 import br.com.fiap.challenge.sprint1.model.categoria.Categoria;
-import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.AtualizarFiguraDTO;
-import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.CriarFiguraDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
 import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AdicionarFigPublicaDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
@@ -60,18 +58,6 @@ public class FiguraPublica {
         this.nomeRedeSocial = dto.usuarioRedeSocial();
         score = new Score(dto);
         score.setFiguraPublica(this);
-    }
-
-    public void atualizar(AtualizarFiguraDTO dto){
-        if(dto.nome() != null){
-            this.nome = dto.nome();
-        }
-        if(dto.nomeArtistico() != null){
-            this.nomeArtistico = dto.nomeArtistico();
-        }
-        if(dto.nomeRedeSocial() != null){
-            this.nomeRedeSocial = dto.nomeRedeSocial();
-        }
     }
 
 }
