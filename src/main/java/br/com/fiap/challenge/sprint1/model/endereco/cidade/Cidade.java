@@ -2,7 +2,6 @@ package br.com.fiap.challenge.sprint1.model.endereco.cidade;
 
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.bairro.Bairro;
-import br.com.fiap.challenge.sprint1.model.endereco.cidade.dto.AtualizarCidadeDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.estado.Estado;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -41,12 +40,6 @@ public class Cidade {
         this.nome = dto.nomeCidade();
         this.ddd = dto.numeroDDD();
         bairros = new ArrayList<>();
-    }
-
-    public void atualizar(AtualizarCidadeDTO dto){
-        if(dto.nome() != null){
-            this.nome = dto.nome();
-        }
     }
 
 }

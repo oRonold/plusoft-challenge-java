@@ -1,6 +1,5 @@
 package br.com.fiap.challenge.sprint1.model.endereco.estado;
 
-import br.com.fiap.challenge.sprint1.controller.AtualizarEstadoDTO;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.cidade.Cidade;
 import br.com.fiap.challenge.sprint1.model.endereco.pais.Pais;
@@ -38,12 +37,6 @@ public class Estado {
     public Estado(CadastrarClienteDTO dto){
         this.nome = dto.nomeEstado();
         cidades = new ArrayList<>();
-    }
-
-    public void atualizar(AtualizarEstadoDTO dto){
-        if(dto.nome() != null){
-            this.nome = dto.nome();
-        }
     }
 
 }

@@ -2,8 +2,6 @@ package br.com.fiap.challenge.sprint1.model.endereco;
 
 import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
-import br.com.fiap.challenge.sprint1.model.endereco.dto.AtualizarEnderecoClienteDTO;
-import br.com.fiap.challenge.sprint1.model.endereco.dto.CriarEnderecoClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.logradouro.Logradouro;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -36,19 +34,9 @@ public class EnderecoCliente {
     @JoinColumn(name = "cd_logradouro")
     private Logradouro logradouro;
 
-    public EnderecoCliente(CadastrarClienteDTO dto){
+    public EnderecoCliente(CadastrarClienteDTO dto) {
         this.numero = dto.numeroLogradouro();
         this.pontoReferencia = dto.pontoReferencia();
-    }
-
-    public void atualizar(AtualizarEnderecoClienteDTO dto) {
-        if (dto.numero() != null) {
-            this.numero = dto.numero();
-        }
-        if (dto.pontoReferencia() != null) {
-            this.pontoReferencia = dto.pontoReferencia();
-        }
-
     }
 
 }

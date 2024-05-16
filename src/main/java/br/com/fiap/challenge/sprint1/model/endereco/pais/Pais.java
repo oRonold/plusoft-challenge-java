@@ -2,7 +2,6 @@ package br.com.fiap.challenge.sprint1.model.endereco.pais;
 
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.estado.Estado;
-import br.com.fiap.challenge.sprint1.model.endereco.pais.dto.AtualizarPaisDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,15 +33,6 @@ public class Pais {
         this.nome = dto.nomePais();
         this.numeroCodigo = dto.codPais();
         estados = new ArrayList<>();
-    }
-
-    public void atualizar(AtualizarPaisDTO dto){
-        if(dto.nome() != null){
-            this.nome = dto.nome();
-        }
-        if(dto.codPais() != null){
-            this.numeroCodigo = dto.codPais();
-        }
     }
 
 }

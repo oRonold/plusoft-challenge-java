@@ -3,8 +3,6 @@ package br.com.fiap.challenge.sprint1.model.endereco.logradouro;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.EnderecoCliente;
 import br.com.fiap.challenge.sprint1.model.endereco.bairro.Bairro;
-import br.com.fiap.challenge.sprint1.model.endereco.logradouro.dto.AtualizarLogradouroDTO;
-import br.com.fiap.challenge.sprint1.model.endereco.logradouro.dto.CriarLogradouroDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,15 +41,5 @@ public class Logradouro {
         this.cep = dto.cep();
         enderecoClientes = new ArrayList<>();
     }
-
-    public void atualizar(AtualizarLogradouroDTO dto){
-        if(dto.nome() != null){
-            this.nome = dto.nome();
-        }
-        if(dto.cep() != null){
-            this.cep = dto.cep();
-        }
-    }
-
 
 }

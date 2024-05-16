@@ -1,7 +1,6 @@
 package br.com.fiap.challenge.sprint1.model.endereco.bairro;
 
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
-import br.com.fiap.challenge.sprint1.model.endereco.bairro.dto.AtualizarBairroDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.cidade.Cidade;
 import br.com.fiap.challenge.sprint1.model.endereco.logradouro.Logradouro;
 import jakarta.persistence.*;
@@ -41,15 +40,6 @@ public class Bairro {
         this.nome = dto.nomeBairro();
         this.zona = dto.zonaBairro();
         logradouros = new ArrayList<>();
-    }
-
-    public void atualizar(AtualizarBairroDTO dto){
-        if(dto.nome() != null){
-            this.nome = dto.nome();
-        }
-        if(dto.zona() != null){
-            this.zona = dto.zona();
-        }
     }
 
 }
