@@ -4,6 +4,7 @@ import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.Usuario;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.AtualizarUsuarioDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.DetalhesUsuarioDTO;
+import br.com.fiap.challenge.sprint1.repository.PesquisaRepository;
 import br.com.fiap.challenge.sprint1.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,47 +16,28 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository repository;
+    private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/cadastrar")
-    @Transactional
-    public ResponseEntity<DetalhesUsuarioDTO> criar(@RequestBody @Valid CadastrarClienteDTO dto, UriComponentsBuilder builder){
-        var usuario = new Usuario(dto);
-        repository.save(usuario);
-        var uri = builder.path("/{id}").buildAndExpand(usuario.getCodigo()).toUri();
-        return ResponseEntity.created(uri).body(new DetalhesUsuarioDTO(usuario));
-    }
-
-    @GetMapping("/listar")
+    @GetMapping
     public ResponseEntity<Page<DetalhesUsuarioDTO>> listar(Pageable pageable){
-        var page = repository.findAll(pageable).map(DetalhesUsuarioDTO::new);
+        var page = usuarioRepository.findAll(pageable).map(DetalhesUsuarioDTO::new);
         return ResponseEntity.ok(page);
     }
 
-    @PutMapping("/atualizar")
-    @Transactional
-    public ResponseEntity<DetalhesUsuarioDTO> atualizar(@RequestBody @Valid AtualizarUsuarioDTO dto){
-        var usuario = repository.getReferenceById(dto.codigo());
-        usuario.atualizar(dto);
+    @GetMapping("/{id}")
+    public ResponseEntity<DetalhesUsuarioDTO> detalhesUsuario(@PathVariable Long id){
+        var usuario = usuarioRepository.getReferenceById(id);
         return ResponseEntity.ok().body(new DetalhesUsuarioDTO(usuario));
     }
 
-    @GetMapping("/listar/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<DetalhesUsuarioDTO> buscarPorId(@PathVariable Long id){
-        var usuario = repository.getReferenceById(id);
+        var usuario = usuarioRepository.getReferenceById(id);
         return ResponseEntity.ok().body(new DetalhesUsuarioDTO(usuario));
-    }
-
-    @DeleteMapping("/excluir/{id}")
-    @Transactional
-    public ResponseEntity<Void> excluir(@PathVariable Long id){
-        var usuario = repository.getReferenceById(id);
-        repository.deleteById(usuario.getCodigo());
-        return ResponseEntity.noContent().build();
     }
 
 }

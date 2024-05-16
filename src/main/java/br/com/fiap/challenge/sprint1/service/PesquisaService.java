@@ -32,6 +32,7 @@ public class PesquisaService {
         var categoria = new Categoria(dto);
 
         pesquisa.setUsuario(usuario);
+        usuario.getPesquisas().add(pesquisa);
         pesquisa.setTipoServico(tipServico);
         pesquisa.getFiguraPublica().add(figuraPub);
 

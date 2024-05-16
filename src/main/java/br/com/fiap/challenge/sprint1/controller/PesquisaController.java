@@ -56,7 +56,7 @@ public class PesquisaController {
     @Transactional
     public ResponseEntity<Void> excluir(@PathVariable Long id){
         var pesquisa = repository.getReferenceById(id);
-        repository.deleteById(pesquisa.getCodigo());
+        repository.delete(pesquisa);
         return ResponseEntity.noContent().build();
     }
 

@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -34,13 +35,14 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Pesquisa> pesquisas;
 
     public Usuario(CadastrarClienteDTO dto){
         this.nome = dto.nome();
         this.email = dto.email();
         this.senha = dto.senha();
+        pesquisas = new ArrayList<>();
     }
 
     public void atualizar(AtualizarUsuarioDTO dto){
