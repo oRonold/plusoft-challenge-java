@@ -1,6 +1,8 @@
 package br.com.fiap.challenge.sprint1.model.score;
 
 import br.com.fiap.challenge.sprint1.model.figuraPublica.FiguraPublica;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AdicionarFigPublicaDTO;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,5 +30,11 @@ public class Score {
     @JoinColumn(name = "cd_fig_publica")
     private FiguraPublica figuraPublica;
 
+    public Score(CriarPesquisaDTO dto){
+        this.numeroScore = dto.numeroScore();
+    }
 
+    public Score(AdicionarFigPublicaDTO dto) {
+        this.numeroScore = dto.numeroScore();
+    }
 }

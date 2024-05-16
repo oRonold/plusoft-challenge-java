@@ -1,16 +1,20 @@
 package br.com.fiap.challenge.sprint1.model.tipoServico;
 
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
 import br.com.fiap.challenge.sprint1.model.tipoServico.dto.AtualizarServicoDTO;
 import br.com.fiap.challenge.sprint1.model.tipoServico.dto.CadastrarServicoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor
 
 @Entity
@@ -28,8 +32,9 @@ public class TipoServico {
     @OneToMany(mappedBy = "tipoServico", cascade = CascadeType.ALL)
     private List<Pesquisa> pesquisas;
 
-    public TipoServico(CadastrarServicoDTO dto){
-        this.descricao = dto.descricao();
+    public TipoServico(CriarPesquisaDTO dto){
+        this.descricao = dto.tipoServico();
+        pesquisas = new ArrayList<>();
     }
 
     public void atualizar(AtualizarServicoDTO dto){

@@ -1,11 +1,13 @@
 package br.com.fiap.challenge.sprint1.model.categoria;
 
 import br.com.fiap.challenge.sprint1.model.figuraPublica.FiguraPublica;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -26,5 +28,10 @@ public class Categoria {
 
     @OneToMany(mappedBy = "categoria")
     private List<FiguraPublica> figuraPublica;
+
+    public Categoria(CriarPesquisaDTO dto){
+        this.nome = dto.nomeCategoria();
+        figuraPublica = new ArrayList<>();
+    }
 
 }

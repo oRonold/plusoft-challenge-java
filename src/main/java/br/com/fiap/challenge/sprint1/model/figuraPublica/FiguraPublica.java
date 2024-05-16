@@ -4,14 +4,19 @@ import br.com.fiap.challenge.sprint1.model.categoria.Categoria;
 import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.AtualizarFiguraDTO;
 import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.CriarFiguraDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AdicionarFigPublicaDTO;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
 import br.com.fiap.challenge.sprint1.model.score.Score;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor
 
 @Entity
@@ -33,17 +38,28 @@ public class FiguraPublica {
     @ManyToMany(mappedBy = "figuraPublica", cascade = CascadeType.ALL)
     private List<Pesquisa> pesquisa;
 
-    @OneToOne(mappedBy = "figuraPublica")
+    @OneToOne(mappedBy = "figuraPublica",cascade = CascadeType.ALL)
     private Score score;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cd_categoria")
     private Categoria categoria;
 
-    public FiguraPublica(CriarFiguraDTO dto){
-        this.nome = dto.nome();
+    public FiguraPublica(CriarPesquisaDTO dto){
+        this.nome = dto.nomeFigPublica();
         this.nomeArtistico = dto.nomeArtistico();
-        this.nomeRedeSocial = dto.nomeRedeSocial();
+        this.nomeRedeSocial = dto.usuarioRedeSocial();
+        pesquisa = new ArrayList<>();
+        score = new Score(dto);
+        score.setFiguraPublica(this);
+    }
+
+    public FiguraPublica(AdicionarFigPublicaDTO dto) {
+        this.nome = dto.nomeFigPublica();
+        this.nomeArtistico = dto.nomeArtistico();
+        this.nomeRedeSocial = dto.usuarioRedeSocial();
+        score = new Score(dto);
+        score.setFiguraPublica(this);
     }
 
     public void atualizar(AtualizarFiguraDTO dto){
