@@ -4,13 +4,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
-public record CriarPesquisaDTO(
-        @NotEmpty
-        String descricao,
-        @NotEmpty
-        String tipoServico,
+public record AdicionarFigPublicaDTO(
         @NotEmpty
         String nomeFigPublica,
         String nomeArtistico,

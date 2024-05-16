@@ -1,6 +1,7 @@
 package br.com.fiap.challenge.sprint1.model.categoria;
 
 import br.com.fiap.challenge.sprint1.model.figuraPublica.FiguraPublica;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AdicionarFigPublicaDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,6 +31,11 @@ public class Categoria {
     private List<FiguraPublica> figuraPublica;
 
     public Categoria(CriarPesquisaDTO dto){
+        this.nome = dto.nomeCategoria();
+        figuraPublica = new ArrayList<>();
+    }
+
+    public Categoria(AdicionarFigPublicaDTO dto){
         this.nome = dto.nomeCategoria();
         figuraPublica = new ArrayList<>();
     }

@@ -1,13 +1,8 @@
 package br.com.fiap.challenge.sprint1.controller;
 
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
-import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AtualizarPesquisaDTO;
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.DetalhesPesquisaDTO;
 import br.com.fiap.challenge.sprint1.model.ramo.Ramo;
 import br.com.fiap.challenge.sprint1.model.ramo.dto.AtualizarRamoDTO;
-import br.com.fiap.challenge.sprint1.model.ramo.dto.CriarRamoDTO;
 import br.com.fiap.challenge.sprint1.model.ramo.dto.DetalhesRamoDTO;
 import br.com.fiap.challenge.sprint1.repository.RamoRepository;
 import jakarta.validation.Valid;

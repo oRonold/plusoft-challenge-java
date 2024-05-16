@@ -2,10 +2,8 @@ package br.com.fiap.challenge.sprint1.controller;
 
 import br.com.fiap.challenge.sprint1.model.figuraPublica.FiguraPublica;
 import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.AtualizarFiguraDTO;
-import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.CriarFiguraDTO;
 import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.DetalhesFiguraDTO;
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AtualizarPesquisaDTO;
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.DetalhesPesquisaDTO;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
 import br.com.fiap.challenge.sprint1.repository.FiguraPublicaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,7 @@ public class FiguraPublicaController {
 
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<DetalhesFiguraDTO> cadastrar(@RequestBody @Valid CriarFiguraDTO dto, UriComponentsBuilder builder){
+    public ResponseEntity<DetalhesFiguraDTO> cadastrar(@RequestBody @Valid CriarPesquisaDTO dto, UriComponentsBuilder builder){
         var figura = new FiguraPublica(dto);
         repository.save(figura);
         var uri = builder.path("/{id}").buildAndExpand(figura.getCodigo()).toUri();

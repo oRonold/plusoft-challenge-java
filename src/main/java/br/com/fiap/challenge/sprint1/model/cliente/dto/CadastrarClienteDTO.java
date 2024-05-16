@@ -31,7 +31,7 @@ public record CadastrarClienteDTO(
         String descRamo,
         @NotEmpty
         String numeroLogradouro,
-        @NotEmpty
+
         String pontoReferencia,
         @NotEmpty
         String nomeLogradouro,

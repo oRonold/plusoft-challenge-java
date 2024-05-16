@@ -14,7 +14,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -55,11 +57,6 @@ public class Pesquisa {
     public Pesquisa(CriarPesquisaDTO dto){
         this.descricao = dto.descricao();
         figuraPublica = new ArrayList<>();
-    }
-
-    public void addFigPublica(AdicionarFigPublicaDTO dto){
-        var figPublica = new FiguraPublica(dto);
-        figuraPublica.add(figPublica);
     }
 
 }

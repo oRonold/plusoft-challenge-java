@@ -1,10 +1,8 @@
 package br.com.fiap.challenge.sprint1.controller;
 
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AtualizarPesquisaDTO;
-import br.com.fiap.challenge.sprint1.model.pesquisa.dto.DetalhesPesquisaDTO;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
 import br.com.fiap.challenge.sprint1.model.tipoServico.TipoServico;
 import br.com.fiap.challenge.sprint1.model.tipoServico.dto.AtualizarServicoDTO;
-import br.com.fiap.challenge.sprint1.model.tipoServico.dto.CadastrarServicoDTO;
 import br.com.fiap.challenge.sprint1.model.tipoServico.dto.DetalhesServicoDTO;
 import br.com.fiap.challenge.sprint1.repository.TipoServicoRepository;
 import jakarta.validation.Valid;
@@ -25,7 +23,7 @@ public class TipoServicoController {
 
     @PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<DetalhesServicoDTO> cadastrar(@RequestBody @Valid CadastrarServicoDTO dto, UriComponentsBuilder builder){
+    public ResponseEntity<DetalhesServicoDTO> cadastrar(@RequestBody @Valid CriarPesquisaDTO dto, UriComponentsBuilder builder){
         var tipoServico = new TipoServico(dto);
         repository.save(tipoServico);
         var uri = builder.path("/{id}").buildAndExpand(tipoServico.getCodigo()).toUri();
