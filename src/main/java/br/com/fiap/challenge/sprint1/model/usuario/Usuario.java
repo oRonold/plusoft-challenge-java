@@ -3,8 +3,6 @@ package br.com.fiap.challenge.sprint1.model.usuario;
 import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
-import br.com.fiap.challenge.sprint1.model.usuario.dto.AtualizarUsuarioDTO;
-import br.com.fiap.challenge.sprint1.model.usuario.dto.CriarUsuarioDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,18 +41,6 @@ public class Usuario {
         this.email = dto.email();
         this.senha = dto.senha();
         pesquisas = new ArrayList<>();
-    }
-
-    public void atualizar(AtualizarUsuarioDTO dto){
-        if(dto.nome() != null){
-            this.nome = dto.nome();
-        }
-        if(dto.email() != null){
-            this.email = dto.email();
-        }
-        if(dto.senha() != null){
-            this.senha = dto.senha();
-        }
     }
 
 }

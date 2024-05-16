@@ -16,7 +16,7 @@ public record DetalhesPesquisaDTO(Long codigo, String descricao,
 
     public DetalhesPesquisaDTO(Pesquisa pesquisa){
         this(pesquisa.getCodigo(), pesquisa.getDescricao(), pesquisa.getDataPesquisa(), pesquisa.getTipoServico().getDescricao(),
-                new ArrayList<>(pesquisa.getFiguraPublica().stream().map(fig -> new DetalhesFiguraDTO(fig.getCodigo(), fig.getNome(), fig.getNomeArtistico(), fig.getNomeRedeSocial(), fig.getScore().getNumeroScore())).toList()));
+                new ArrayList<>(pesquisa.getFiguraPublica().stream().map(fig -> new DetalhesFiguraDTO(fig.getCodigo(), fig.getNome(), fig.getNomeArtistico(), fig.getNomeRedeSocial(), fig.getScore().getNumeroScore(), fig.getCategoria().getNome())).toList()));
     }
 
 }
