@@ -30,7 +30,7 @@ public class Pesquisa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_pesquisa_seq")
-    @Column(name = "cd_codigo")
+    @Column(name = "cd_pesquisa")
     private Long codigo;
 
     @Column(name = "ds_pesquisa", length = 100, nullable = false)

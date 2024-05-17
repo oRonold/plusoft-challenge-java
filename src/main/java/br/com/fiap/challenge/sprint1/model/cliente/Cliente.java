@@ -25,6 +25,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_cliente_seq")
+    @Column(name = "cd_cliente")
     private Long codigo;
     @Column(name = "nm_cliente", length = 100, nullable = false)
     private String nome;

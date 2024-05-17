@@ -22,6 +22,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_usuario_seq")
+    @Column(name = "cd_usuario")
     private Long codigo;
     @Column(name = "nm_usuario", length = 100, nullable = false)
     private String nome;
