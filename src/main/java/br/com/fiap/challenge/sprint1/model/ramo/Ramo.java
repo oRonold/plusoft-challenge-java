@@ -21,6 +21,7 @@ public class Ramo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_ramo_seq")
+    @Column(name = "cd_ramo")
     private Long codigo;
     @Column(name = "nm_ramo", length = 100, nullable = false)
     private String nome;
