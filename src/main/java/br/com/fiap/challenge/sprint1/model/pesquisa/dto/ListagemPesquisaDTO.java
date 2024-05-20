@@ -8,11 +8,10 @@ import java.time.LocalDateTime;
 
 public record ListagemPesquisaDTO(Long codigo, String descricao,
                                   @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-                                  LocalDateTime dataPesquisa, String tipoServico, String nomeFigPublica) {
+                                  LocalDateTime dataPesquisa, String tipoServico) {
 
     public ListagemPesquisaDTO(Pesquisa pesquisa){
-        this(pesquisa.getCodigo(), pesquisa.getDescricao(), pesquisa.getDataPesquisa(), pesquisa.getTipoServico().getDescricao(),
-                pesquisa.getFiguraPublica().stream().map(FiguraPublica::getNome).toString());
+        this(pesquisa.getCodigo(), pesquisa.getDescricao(), pesquisa.getDataPesquisa(), pesquisa.getTipoServico().getDescricao());
     }
 
 }

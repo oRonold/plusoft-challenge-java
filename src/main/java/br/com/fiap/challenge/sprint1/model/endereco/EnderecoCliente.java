@@ -21,7 +21,7 @@ public class EnderecoCliente {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inov_endereco_cliente_seq")
     @Column(name = "cd_endereco")
     private Long codigo;
-    @Column(name = "nr_logradouro", precision = 7, nullable = false)
+    @Column(name = "nr_logradouro", length = 11, nullable = false)
     private String numero;
     @Column(name = "ds_ponto_referencia", length = 50)
     private String pontoReferencia;

@@ -36,7 +36,7 @@ public class Pesquisa {
     @Column(name = "ds_pesquisa", length = 100, nullable = false)
     private String descricao;
 
-    @Column(name = "dt_pesquisa", length = 100, nullable = false)
+    @Column(name = "dt_pesquisa", nullable = false)
     @CreatedDate
     private LocalDateTime dataPesquisa;
 

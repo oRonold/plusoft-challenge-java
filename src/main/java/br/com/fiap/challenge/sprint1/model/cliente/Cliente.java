@@ -31,9 +31,9 @@ public class Cliente {
     private String nome;
     @Column(name = "dt_nascimento", nullable = false)
     private LocalDate dataNascimento;
-    @Column(name = "nr_cpf", length = 11, nullable = false)
+    @Column(name = "nr_cpf", length = 11, nullable = false, unique = true)
     private String cpf;
-    @Column(name = "nr_telefone", length = 15, nullable = false)
+    @Column(name = "nr_telefone", length = 15, nullable = false, unique = true)
     private String telefone;
 
     @OneToOne(cascade = CascadeType.ALL)

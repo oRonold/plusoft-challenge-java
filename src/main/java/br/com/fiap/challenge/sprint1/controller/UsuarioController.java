@@ -1,6 +1,7 @@
 package br.com.fiap.challenge.sprint1.controller;
 
 import br.com.fiap.challenge.sprint1.model.usuario.dto.DetalhesUsuarioDTO;
+import br.com.fiap.challenge.sprint1.model.usuario.dto.ListagemUsuarioDTO;
 import br.com.fiap.challenge.sprint1.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +17,8 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
-    public ResponseEntity<Page<DetalhesUsuarioDTO>> listar(Pageable pageable){
-        var page = usuarioRepository.findAll(pageable).map(DetalhesUsuarioDTO::new);
+    public ResponseEntity<Page<ListagemUsuarioDTO>> listar(Pageable pageable){
+        var page = usuarioRepository.findAll(pageable).map(ListagemUsuarioDTO::new);
         return ResponseEntity.ok(page);
     }
 
