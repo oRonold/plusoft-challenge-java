@@ -35,11 +35,8 @@ Link do Video para Proposta Tecnológica: [https://www.youtube.com/watch?v=dfO73
 - DELETE - pesquisas/{id}
 
 ### Usuario-Controller
-- POST - usuarios
 - GET - usuarios
 - GET - usuarios/{id}
-- PUT - usuarios/{id}
-- DELETE - usuarios/{id}
 
 ### Cliente-Controller
 - POST - clientes
