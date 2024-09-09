@@ -1,6 +1,6 @@
 package br.com.fiap.challenge.sprint1.service;
 
-import br.com.fiap.challenge.sprint1.infra.ValidacaoException;
+import br.com.fiap.challenge.sprint1.infra.exception.ValidacaoException;
 import br.com.fiap.challenge.sprint1.model.categoria.Categoria;
 import br.com.fiap.challenge.sprint1.model.figuraPublica.FiguraPublica;
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
