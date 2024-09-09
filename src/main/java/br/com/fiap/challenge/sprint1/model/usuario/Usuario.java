@@ -3,6 +3,7 @@ package br.com.fiap.challenge.sprint1.model.usuario;
 import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
+import br.com.fiap.challenge.sprint1.model.usuario.dto.CadastrarUsuarioDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,10 +42,10 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Pesquisa> pesquisas;
 
-    public Usuario(CadastrarClienteDTO dto){
+    public Usuario(CadastrarUsuarioDTO dto, String senha){
         this.nome = dto.nome();
         this.email = dto.email();
-        this.senha = dto.senha();
+        this.senha = senha;
         pesquisas = new ArrayList<>();
     }
 
