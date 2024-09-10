@@ -38,7 +38,7 @@ public class Usuario implements UserDetails {
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pesquisa> pesquisas;
 
     public Usuario(CadastrarClienteDTO dto, String senha){

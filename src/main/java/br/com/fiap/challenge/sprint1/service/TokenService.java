@@ -32,8 +32,7 @@ public class TokenService {
 
     public String getSubject(String token) {
         try {
-            var algoritmo = Algorithm.HMAC256(token);
-            System.out.println(token);
+            var algoritmo = Algorithm.HMAC256(senhaToken);
             return JWT.require(algoritmo)
                     .withIssuer("PLUSOFT API")
                     .build()
