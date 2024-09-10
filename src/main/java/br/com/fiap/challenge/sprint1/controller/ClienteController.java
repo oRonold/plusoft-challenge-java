@@ -33,23 +33,16 @@ public class ClienteController {
         return ResponseEntity.created(uri).body(new DetalhesClienteDTO(cliente));
     }
 
-    @GetMapping
-    public ResponseEntity<Page<ListagemClientesDTO>> listar(Pageable pageable){
-        var page = repository.findAll(pageable).map(ListagemClientesDTO::new);
-        return ResponseEntity.ok(page);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<DetalhesClienteDTO> buscarPorId(@PathVariable Long id){
-        var cliente = repository.getReferenceById(id);
+    @GetMapping("/detalhes")
+    public ResponseEntity<DetalhesClienteDTO> detalhes(){
+        var cliente = service.detalhes();
         return ResponseEntity.ok().body(new DetalhesClienteDTO(cliente));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     @Transactional
-    public ResponseEntity<DetalhesClienteDTO> atualizar(@RequestBody @Valid AtualizarClienteDTO dto, @PathVariable Long id){
-        var cliente = repository.getReferenceById(id);
-        cliente.atualizar(dto);
+    public ResponseEntity<DetalhesClienteDTO> atualizar(@RequestBody @Valid AtualizarClienteDTO dto){
+        var cliente = service.atualizar(dto);
         return ResponseEntity.ok().body(new DetalhesClienteDTO(cliente));
     }
 

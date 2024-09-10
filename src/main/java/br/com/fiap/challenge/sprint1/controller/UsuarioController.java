@@ -4,6 +4,7 @@ import br.com.fiap.challenge.sprint1.model.dto.LoginDTO;
 import br.com.fiap.challenge.sprint1.model.dto.TokenJwtDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.DetalhesUsuarioDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.ListagemUsuarioDTO;
+import br.com.fiap.challenge.sprint1.model.usuario.dto.PublicListaUsuarioDTO;
 import br.com.fiap.challenge.sprint1.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/publico/listar")
-    public ResponseEntity<Page<ListagemUsuarioDTO>> listar(Pageable pageable){
+    public ResponseEntity<Page<PublicListaUsuarioDTO>> listar(Pageable pageable){
         var page = service.listar(pageable);
         return ResponseEntity.ok(page);
     }

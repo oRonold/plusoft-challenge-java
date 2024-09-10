@@ -7,6 +7,7 @@ import br.com.fiap.challenge.sprint1.model.pesquisa.dto.DetalhesPesquisaDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.Usuario;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.DetalhesUsuarioDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.ListagemUsuarioDTO;
+import br.com.fiap.challenge.sprint1.model.usuario.dto.PublicListaUsuarioDTO;
 import br.com.fiap.challenge.sprint1.repository.ClienteRepository;
 import br.com.fiap.challenge.sprint1.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,8 @@ public class UsuarioService {
         return (Usuario) auth.getPrincipal();
     }
 
-    public Page<ListagemUsuarioDTO> listar(Pageable pageable){
-        var usuario = usuarioRepository.findAll(pageable).map(ListagemUsuarioDTO::new);
+    public Page<PublicListaUsuarioDTO> listar(Pageable pageable){
+        var usuario = usuarioRepository.findAll(pageable).map(PublicListaUsuarioDTO::new);
         return usuario;
     }
 

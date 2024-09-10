@@ -1,7 +1,9 @@
 package br.com.fiap.challenge.sprint1.service;
 
 import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
+import br.com.fiap.challenge.sprint1.model.cliente.dto.AtualizarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
+import br.com.fiap.challenge.sprint1.model.cliente.dto.ListagemClientesDTO;
 import br.com.fiap.challenge.sprint1.model.dto.LoginDTO;
 import br.com.fiap.challenge.sprint1.model.endereco.EnderecoCliente;
 import br.com.fiap.challenge.sprint1.model.endereco.bairro.Bairro;
@@ -13,8 +15,10 @@ import br.com.fiap.challenge.sprint1.model.ramo.Ramo;
 import br.com.fiap.challenge.sprint1.model.usuario.Usuario;
 import br.com.fiap.challenge.sprint1.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +33,6 @@ public class ClienteService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private TokenService tokenService;
 
     public Cliente cadastrar(CadastrarClienteDTO dto){
         var cliente = new Cliente(dto, passwordEncoder.encode(dto.senha()));
@@ -68,4 +69,15 @@ public class ClienteService {
         return cliente;
     }
 
+    public Cliente detalhes(){
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        return clienteRepository.findClienteByUsuario((Usuario) auth.getPrincipal());
+    }
+
+    public Cliente atualizar(AtualizarClienteDTO dto){
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        var cliente = clienteRepository.findClienteByUsuario((Usuario) auth.getPrincipal());
+        cliente.atualizar(dto, passwordEncoder.encode(dto.senha()));
+        return cliente;
+    }
 }

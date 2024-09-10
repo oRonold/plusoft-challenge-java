@@ -57,7 +57,7 @@ public class Cliente {
         usuario.setCliente(this);
     }
 
-    public void atualizar(AtualizarClienteDTO dto){
+    public void atualizar(AtualizarClienteDTO dto, String senha){
         if(dto.nome() != null){
             this.nome = dto.nome();
         }
@@ -65,7 +65,7 @@ public class Cliente {
             this.telefone = dto.telefone();
         }
         if(dto.senha() != null){
-            this.usuario.setSenha(dto.senha());
+            this.usuario.setSenha(senha);
         }
         if(dto.nomeRamo() != null){
             this.ramo.setNome(dto.nomeRamo());
