@@ -47,12 +47,13 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
     private List<EnderecoCliente> enderecoClientes;
 
-    public Cliente(CadastrarClienteDTO dto){
+    public Cliente(CadastrarClienteDTO dto, String senha){
         this.nome = dto.nome();
         this.dataNascimento = dto.dataNascimento();
         this.cpf = dto.cpf();
         this.telefone = dto.telefone();
         enderecoClientes = new ArrayList<>();
+        usuario = new Usuario(dto, senha);
         usuario.setCliente(this);
     }
 

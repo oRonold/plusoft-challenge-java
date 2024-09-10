@@ -1,4 +1,4 @@
-package br.com.fiap.challenge.sprint1.infra;
+package br.com.fiap.challenge.sprint1.infra.exception;
 
 public class ValidacaoException extends RuntimeException{
 

@@ -1,6 +1,5 @@
 package br.com.fiap.challenge.sprint1.controller;
 
-import br.com.fiap.challenge.sprint1.model.cliente.Cliente;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.AtualizarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
 import br.com.fiap.challenge.sprint1.model.cliente.dto.DetalhesClienteDTO;
@@ -26,10 +25,10 @@ public class ClienteController {
     @Autowired
     private ClienteService service;
 
-    @PostMapping
+    @PostMapping("/cadastrar")
     @Transactional
     public ResponseEntity<DetalhesClienteDTO> cadastrar(@RequestBody @Valid CadastrarClienteDTO dto, UriComponentsBuilder builder){
-        var cliente = service.cadastrarCliente(dto);
+        var cliente = service.cadastrar(dto);
         var uri = builder.path("/{id}").buildAndExpand(cliente.getCodigo()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesClienteDTO(cliente));
     }

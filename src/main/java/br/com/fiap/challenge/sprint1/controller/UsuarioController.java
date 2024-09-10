@@ -1,12 +1,12 @@
 package br.com.fiap.challenge.sprint1.controller;
 
+import br.com.fiap.challenge.sprint1.model.cliente.dto.CadastrarClienteDTO;
+import br.com.fiap.challenge.sprint1.model.cliente.dto.DetalhesClienteDTO;
 import br.com.fiap.challenge.sprint1.model.dto.LoginDTO;
 import br.com.fiap.challenge.sprint1.model.dto.TokenJwtDTO;
-import br.com.fiap.challenge.sprint1.model.usuario.dto.CadastrarUsuarioDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.DetalhesUsuarioDTO;
 import br.com.fiap.challenge.sprint1.model.usuario.dto.ListagemUsuarioDTO;
 import br.com.fiap.challenge.sprint1.repository.UsuarioRepository;
-import br.com.fiap.challenge.sprint1.service.AuthenticationService;
 import br.com.fiap.challenge.sprint1.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,6 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService service;
-
-    @PostMapping("/cadastrar")
-    @Transactional
-    public ResponseEntity<DetalhesUsuarioDTO> cadastrar(@RequestBody @Valid CadastrarUsuarioDTO dto, UriComponentsBuilder builder){
-        var usuario = service.cadastrar(dto);
-        var uri = builder.path("/{id}").buildAndExpand(usuario.getCodigo()).toUri();
-        return ResponseEntity.created(uri).body(new DetalhesUsuarioDTO(usuario));
-    }
 
     @PostMapping("/login")
     public ResponseEntity<TokenJwtDTO> login(@RequestBody @Valid LoginDTO dto){
