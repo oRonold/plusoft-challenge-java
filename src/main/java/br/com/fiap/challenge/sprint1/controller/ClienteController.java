@@ -20,9 +20,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository repository;
-
-    @Autowired
     private ClienteService service;
 
     @PostMapping("/cadastrar")
@@ -44,13 +41,6 @@ public class ClienteController {
     public ResponseEntity<DetalhesClienteDTO> atualizar(@RequestBody @Valid AtualizarClienteDTO dto){
         var cliente = service.atualizar(dto);
         return ResponseEntity.ok().body(new DetalhesClienteDTO(cliente));
-    }
-
-    @DeleteMapping("/{id}")
-    @Transactional
-    public ResponseEntity<Void> excluir(@PathVariable Long id){
-        repository.deleteById(id);
-        return ResponseEntity.noContent().build();
     }
 
 }

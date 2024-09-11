@@ -29,9 +29,6 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
     @Autowired
-    private AuthenticationManager manager;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public Cliente cadastrar(CadastrarClienteDTO dto){
