@@ -2,6 +2,7 @@ package br.com.fiap.challenge.sprint1.model.pesquisa.dto;
 
 import br.com.fiap.challenge.sprint1.model.figuraPublica.dto.DetalhesFiguraDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
+import br.com.fiap.challenge.sprint1.model.pesquisa.StatusPesquisa;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.lang.reflect.Array;
@@ -12,10 +13,10 @@ import java.util.HashSet;
 
 public record DetalhesPesquisaDTO(Long codigo, String descricao,
                                   @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-                                  LocalDateTime dataPesquisa, String tipoServico, ArrayList<DetalhesFiguraDTO> figuraPublica) {
+                                  LocalDateTime dataPesquisa, String tipoServico, StatusPesquisa status, ArrayList<DetalhesFiguraDTO> figuraPublica) {
 
     public DetalhesPesquisaDTO(Pesquisa pesquisa){
-        this(pesquisa.getCodigo(), pesquisa.getDescricao(), pesquisa.getDataPesquisa(), pesquisa.getTipoServico().getDescricao(),
+        this(pesquisa.getCodigo(), pesquisa.getDescricao(), pesquisa.getDataPesquisa(), pesquisa.getTipoServico().getDescricao(), pesquisa.getStatusPesquisa(),
                 new ArrayList<>(pesquisa.getFiguraPublica().stream().map(fig -> new DetalhesFiguraDTO(fig.getCodigo(), fig.getNome(), fig.getNomeArtistico(), fig.getNomeRedeSocial(), fig.getScore().getNumeroScore(), fig.getCategoria().getNome())).toList()));
     }
 

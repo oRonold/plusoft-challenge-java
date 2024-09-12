@@ -13,4 +13,9 @@ public class ErrorHandler {
         return ResponseEntity.noContent().build();
     }
 
+    @ExceptionHandler(PesquisaIdNotFound.class)
+    public ResponseEntity<PesquisaNotBelongsOrExist> erroIdPesquisa403(){
+        return ResponseEntity.badRequest().body(new PesquisaNotBelongsOrExist("A pesquisa informada não existe ou não pertence a este usuario"));
+    }
+
 }

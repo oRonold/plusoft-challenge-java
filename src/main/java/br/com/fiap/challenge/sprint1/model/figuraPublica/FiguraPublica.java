@@ -33,13 +33,13 @@ public class FiguraPublica {
     @Column(name = "nm_usuario_rede_social", length = 100, nullable = false)
     private String nomeRedeSocial;
 
-    @ManyToMany(mappedBy = "figuraPublica", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "figuraPublica", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Pesquisa> pesquisa;
 
-    @OneToOne(mappedBy = "figuraPublica",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "figuraPublica",cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Score score;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "cd_categoria")
     private Categoria categoria;
 

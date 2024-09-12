@@ -15,33 +15,32 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/pesquisas")
 public class PesquisaController {
 
     @Autowired
-    private PesquisaRepository repository;
-
-    @Autowired
     private PesquisaService service;
 
-    @PostMapping("/usuario/{idUsuario}")
+    @PostMapping
     @Transactional
-    public ResponseEntity<DetalhesPesquisaDTO> criar(@PathVariable Long idUsuario, @RequestBody @Valid CriarPesquisaDTO dto, UriComponentsBuilder builder){
-        var pesquisa = service.criarPesquisa(idUsuario, dto);
+    public ResponseEntity<DetalhesPesquisaDTO> criar(@RequestBody @Valid CriarPesquisaDTO dto, UriComponentsBuilder builder){
+        var pesquisa = service.criarPesquisa(dto);
         var uri = builder.path("/{id}").buildAndExpand(pesquisa.getCodigo()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesPesquisaDTO(pesquisa));
     }
 
     @GetMapping
-    public ResponseEntity<Page<ListagemPesquisaDTO>> listar(Pageable pageable){
-        var page = repository.findAll(pageable).map(ListagemPesquisaDTO::new);
+    public ResponseEntity<List<ListagemPesquisaDTO>> listar(){
+        var page = service.listarPesquisaUsuario();
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<DetalhesPesquisaDTO> buscarPorId(@PathVariable Long id){
-        var pesquisa = repository.getReferenceById(id);
+        var pesquisa = service.buscarPorId(id);
         return ResponseEntity.ok().body(new DetalhesPesquisaDTO(pesquisa));
     }
 
@@ -54,10 +53,9 @@ public class PesquisaController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<Void> excluir(@PathVariable Long id){
-        var pesquisa = repository.getReferenceById(id);
-        repository.delete(pesquisa);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ListagemPesquisaDTO> excluir(@PathVariable Long id){
+        var pesquisa = service.excluir(id);
+        return ResponseEntity.ok().body(new ListagemPesquisaDTO(pesquisa));
     }
 
 }

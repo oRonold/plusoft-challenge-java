@@ -40,13 +40,17 @@ public class Pesquisa {
     @CreatedDate
     private LocalDateTime dataPesquisa;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @Column(name = "st_pesquisa", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private StatusPesquisa statusPesquisa;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "INOV_TB_PESQUISA_FIG_PUBLICA",
             joinColumns = @JoinColumn(name = "cd_pesquisa", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "cd_fig_publica", nullable = false))
     private List<FiguraPublica> figuraPublica;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "cd_tipo_servico")
     private TipoServico tipoServico;
 
@@ -56,6 +60,7 @@ public class Pesquisa {
 
     public Pesquisa(CriarPesquisaDTO dto){
         this.descricao = dto.descricao();
+        this.statusPesquisa = StatusPesquisa.EM_ANDAMENTO;
         figuraPublica = new ArrayList<>();
     }
 

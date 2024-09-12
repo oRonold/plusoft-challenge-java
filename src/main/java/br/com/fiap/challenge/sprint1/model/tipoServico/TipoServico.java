@@ -26,7 +26,7 @@ public class TipoServico {
     @Column(name = "ds_tipo_servico", length = 100, nullable = false)
     private String descricao;
 
-    @OneToMany(mappedBy = "tipoServico", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tipoServico", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Pesquisa> pesquisas;
 
     public TipoServico(CriarPesquisaDTO dto){
