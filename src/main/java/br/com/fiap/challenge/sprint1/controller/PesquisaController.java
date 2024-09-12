@@ -44,6 +44,12 @@ public class PesquisaController {
         return ResponseEntity.ok().body(new DetalhesPesquisaDTO(pesquisa));
     }
 
+    @GetMapping("/em-andamento")
+    public ResponseEntity<List<DetalhesPesquisaDTO>> buscarPesquisaEmAndamento(){
+        var pesquisa = service.pesquisaEmAndamento();
+        return ResponseEntity.ok(pesquisa);
+    }
+
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<DetalhesPesquisaDTO> adicionarFiguraPublica(@PathVariable Long id, @RequestBody @Valid AdicionarFigPublicaDTO dto){

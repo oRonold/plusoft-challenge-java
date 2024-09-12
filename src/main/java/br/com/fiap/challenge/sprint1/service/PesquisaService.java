@@ -8,6 +8,7 @@ import br.com.fiap.challenge.sprint1.model.pesquisa.Pesquisa;
 import br.com.fiap.challenge.sprint1.model.pesquisa.StatusPesquisa;
 import br.com.fiap.challenge.sprint1.model.pesquisa.dto.AdicionarFigPublicaDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.dto.CriarPesquisaDTO;
+import br.com.fiap.challenge.sprint1.model.pesquisa.dto.DetalhesPesquisaDTO;
 import br.com.fiap.challenge.sprint1.model.pesquisa.dto.ListagemPesquisaDTO;
 import br.com.fiap.challenge.sprint1.model.tipoServico.TipoServico;
 import br.com.fiap.challenge.sprint1.model.usuario.Usuario;
@@ -31,9 +32,6 @@ public class PesquisaService {
 
     @Autowired
     private PesquisaRepository pesquisaRepository;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
 
     public Pesquisa criarPesquisa(CriarPesquisaDTO dto){
         var usuario = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -82,9 +80,21 @@ public class PesquisaService {
         return pesquisa;
     }
 
+    public List<DetalhesPesquisaDTO> pesquisaEmAndamento(){
+        var usuario = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var pesquisa =  pesquisaRepository.queryPesquisaEmAndamento((Usuario) usuario).stream().map(DetalhesPesquisaDTO::new).toList();
+        if(pesquisa == null){
+            throw new PesquisaIdNotFound();
+        }
+        return pesquisa;
+    }
+
     public Pesquisa excluir(Long id){
         var usuario = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         var pesquisa = pesquisaRepository.findByCodigoAndUsuario(id, (Usuario) usuario);
+        if(pesquisa == null){
+            throw new PesquisaIdNotFound();
+        }
         pesquisa.setStatusPesquisa(StatusPesquisa.CONCLUIDA);
         return pesquisa;
     }
