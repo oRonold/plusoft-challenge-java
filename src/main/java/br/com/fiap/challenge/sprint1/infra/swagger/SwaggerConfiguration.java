@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 
 @OpenAPIDefinition(
-        info = @Info(contact = @Contact(name = "Ronald Oliveira", email = "rm552364@fiap.com.br", url =
+        info = @Info(contact = @Contact(name = "Innov8Tech", email = "rm552364@fiap.com.br", url =
                 "http://wwww.fiap.com.br"),
                 description = "Especificação da API para o challenge 2024 FIAP-PLUSOFT",
                 title = "PLUSOFT CHALLENGE API",
@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         ),
         servers = {
                 @Server(description = "Dev Env", url = "http://localhost:8080"),
-                @Server(description = "Prod Env", url = "http://fiapblog.com.br")
+                @Server(description = "Prod Env", url = "http://plusoftapi.com.br")
         },
         security = @SecurityRequirement(name = "bearerJWT")
 )

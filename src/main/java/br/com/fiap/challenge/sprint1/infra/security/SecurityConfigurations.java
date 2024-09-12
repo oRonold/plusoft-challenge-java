@@ -22,14 +22,17 @@ public class SecurityConfigurations {
     @Autowired
     private SecurityFilter filter;
 
+    private static final String[] SWAGGER = { "/swagger-ui/**", "/v3/api-docs/**" };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
-                    req.requestMatchers(HttpMethod.POST, "/usuarios/login").permitAll();
-                    req.requestMatchers(HttpMethod.POST, "/clientes/cadastrar").permitAll();
+                    req.requestMatchers(HttpMethod.POST, "/usuarios/publico/login").permitAll();
+                    req.requestMatchers(HttpMethod.POST, "/clientes/public/cadastrar").permitAll();
                     req.requestMatchers(HttpMethod.GET, "usuarios/publico/listar").permitAll();
+                    req.requestMatchers(HttpMethod.GET, SWAGGER).permitAll();
                     req.anyRequest().authenticated();
                 })
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class).build();

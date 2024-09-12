@@ -53,10 +53,11 @@ public class PesquisaService {
     }
 
     public Pesquisa addFiguraPublica(Long idPesquisa, AdicionarFigPublicaDTO dto){
-        if(!pesquisaRepository.existsById(idPesquisa)){
-            throw new ValidacaoException("A pesquisa não existe!");
+        var usuario = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var pesquisa = pesquisaRepository.findByCodigoAndUsuario(idPesquisa, (Usuario) usuario);
+        if(pesquisa == null){
+            throw new PesquisaIdNotFound();
         }
-        var pesquisa = pesquisaRepository.getReferenceById(idPesquisa);
         var figPublica = new FiguraPublica(dto);
         var categoria = new Categoria(dto);
 
