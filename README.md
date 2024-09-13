@@ -11,10 +11,17 @@
 - Descompactar e abrir o projeto em alguma IDE, preferencialmente, Intellij.
 - As dependências serão baixadas automaticamente pelo Maven.
 - Iniciar a aplicação no botão play no topo da IDE.
-- Abrir aplicação de testes de API(Insomnia, Postman) disponível em seu computador.
-- Colocar a URL: "http://localhost:8080/" e testá-la de acordo com a documentação.
+- Abrir o navegador disponível em sua máquina e acessar esta URL: http://localhost:8080/swagger-ui/index.html#
 
-AVISO: Imagens dos diagramas e a exportação dos endpoints do Insomnia estão na pasta "doc".
+## Tecnologias utilizadas 🔎
+- Java 21
+- Spring Boot 3
+- Maven
+- Spring Data JPA/Hibernate
+- Spring Web
+- Spring Security
+- Autenticação com Token JWT
+- Swagger
 
 ## Diagramas :page_facing_up:
 ### Diagrama de Entidade-Relacionamento
@@ -22,25 +29,3 @@ AVISO: Imagens dos diagramas e a exportação dos endpoints do Insomnia estão n
 
 ### Diagrama de Classe de Entidades
 ![plusoft_challenge_class](https://github.com/oRonold/plusoft-challenge-java/assets/109552047/0eb33b92-b0a6-47c9-a60c-8aecdfd84135)
-
-## Vídeo :clapper:
-Link do Video para Proposta Tecnológica: [https://www.youtube.com/watch?v=dfO73PmUA74](https://www.youtube.com/watch?v=lJn4Mlgskh4)
-
-## Endpoints :mag:
-### Pesquisa-Controller
-- POST - pesquisas
-- GET - pesquisas
-- GET - pesquisas/{id}
-- PUT - pesquisas/{id}
-- DELETE - pesquisas/{id}
-
-### Usuario-Controller
-- GET - usuarios
-- GET - usuarios/{id}
-
-### Cliente-Controller
-- POST - clientes
-- GET - clientes
-- GET - clientes/{id}
-- PUT - clientes/{id}
-- DELETE - clientes/{id}
