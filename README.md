@@ -13,6 +13,16 @@
 - Iniciar a aplicação no botão play no topo da IDE.
 - Abrir o navegador disponível em sua máquina e acessar esta url: http://localhost:8080/swagger-ui/index.html#
 
+## Tecnologias utilizadas 🔎
+- Java 21
+- Spring Boot 3
+- Maven
+- Spring Data JPA/Hibernate
+- Spring Web
+- Spring Security
+- Autenticação com Token JWT
+- Swagger
+
 ## Diagramas :page_facing_up:
 ### Diagrama de Entidade-Relacionamento
 ![DER](https://github.com/oRonold/plusoft-challenge-java/assets/109552047/b27e3dab-668a-44fe-a816-7fca62232b6a)
