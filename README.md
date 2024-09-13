@@ -11,7 +11,7 @@
 - Descompactar e abrir o projeto em alguma IDE, preferencialmente, Intellij.
 - As dependências serão baixadas automaticamente pelo Maven.
 - Iniciar a aplicação no botão play no topo da IDE.
-- Abrir o navegador disponível em sua máquina e acessar esta url: http://localhost:8080/swagger-ui/index.html#
+- Abrir o navegador disponível em sua máquina e acessar esta URL: http://localhost:8080/swagger-ui/index.html#
 
 ## Tecnologias utilizadas 🔎
 - Java 21
